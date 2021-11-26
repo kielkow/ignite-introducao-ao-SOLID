@@ -9,6 +9,8 @@ class ListAllUsersController {
     try {
       const { user_id } = request.headers;
 
+      if (!user_id) throw { status: 400, message: "User ID must be informed" };
+
       const users = this.listAllUsersUseCase.execute({
         user_id: user_id.toString(),
       });
